@@ -1,0 +1,44 @@
+.app-root {
+	border-color: grey ;
+	border-style: ridge ;
+	display: grid;
+	grid: 50px auto 10% / 120px auto ;
+	grid-row-gap: 6px;
+	height: 100%;
+}
+.app-topbar {
+	grid-area: 1 / 1 / 1 / span 2 ;
+	height: 100% ;
+}
+.app-sidebar {
+	grid-area: 2 / 1 ;
+	height: 100%;
+}
+.app-content {
+	grid-area: 2 / 2 ;
+	height: 100%;
+}
+.router-outlet {
+	grid-area: 3 / 1 / auto / span 2 ;
+	border-color: white ;
+	border-style: ridge ;
+}
+.app-content {
+	border-style: dashed;
+	border-color: green;
+	background-color: RGBA(100,100,100,0.5);
+	background-size: cover;
+}
+
+.app-sidebar {
+	border-style: dotted;
+	border-color: blue;
+	background-color: #fff;
+	background-color: RGBA(100,100,100,0.5);
+}
+.app-topbar {
+	border-style: dotted;
+	border-color: orange;
+	background-color: #fff;
+	background-color: RGBA(100,100,100,0.5);
+}
