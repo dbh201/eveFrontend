@@ -5,6 +5,7 @@ import { ItemDetailsComponent } from './item-details/item-details.component';
 import { TradeCalculatorComponent } from './trade-calculator/trade-calculator.component';
 import { BuySellDepthComponent } from './buy-sell-depth/buy-sell-depth.component';
 import { PriceHistoryComponent } from './price-history/price-history.component';
+import { ContentComponent } from './content/content.component';
 
 const routes: Routes = [
   {
@@ -22,7 +23,10 @@ const routes: Routes = [
   }, {
     path: 'price-history',
     component: PriceHistoryComponent
-  }
+	}, {
+		path: '',
+		component: ContentComponent
+	}
 ];
 
 @NgModule({
