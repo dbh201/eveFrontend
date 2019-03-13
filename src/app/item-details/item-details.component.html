@@ -1,3 +1,9 @@
 <p>
   item-details works!
+	ID: {{itemID}} <br/>
+	<input [(ngModel)]="itemID" type="number" placeholder="itemID" />
+	<input (click)="update()" type="button" placeholder="update" value="Submit Query"/>
+</p>
+<p>
+<label *ngFor="let i of resultCols" ><p>{{i}}:<br/>{{details[i]}}</p><br/></label>
 </p>
