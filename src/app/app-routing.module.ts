@@ -23,10 +23,10 @@ const routes: Routes = [
   }, {
     path: 'price-history',
     component: PriceHistoryComponent
-	}, {
-		path: '',
-		component: ContentComponent
-	}
+  }, {
+    path: '',
+    component: ContentComponent
+  }
 ];
 
 @NgModule({
