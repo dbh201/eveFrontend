@@ -4,6 +4,20 @@
 	<input [(ngModel)]="itemID" type="number" placeholder="itemID" />
 	<input (click)="update()" type="button" placeholder="update" value="Submit Query"/>
 </p>
-<p>
-<label *ngFor="let i of resultCols" ><p>{{i}}:<br/>{{details[i]}}</p><br/></label>
-</p>
+<div *ngIf='item != undefined;' class='item-details-table'>
+  <div class='item-details-name'>
+    <img *ngIf='icon != "";' src={{icon}} />Icon: {{icon}} Name: {{item.typeName}}
+  </div>
+  <div class='item-details-IDs'>
+    ID: {{item.typeID}} GroupID: {{item.groupID}} RaceID: {{item.raceID}} marketGroupID: {{item.marketGroupID}}
+  </div>
+  <div class='item-details-description'>
+    {{item.description}}
+  </div>
+  <div class='item-details-common-info'>
+    Volume: {{item.volume}}
+    Capacity: {{item.capacity}}
+    Batch Size: {{item.portionSize}}
+    Base Price: {{item.basePrice}}
+  </div>
+</div>
