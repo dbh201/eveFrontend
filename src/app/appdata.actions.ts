@@ -1,17 +1,25 @@
 import { Action } from '@ngrx/store';
 import { Item } from './item';
 
-export enum Actions {
+export enum ActionType {
+  Item = '[Global] Item Action',
+}
+
+export enum ItemActions {
   SetItem = '[Global] Set selected item',
   SyncItem = '[Global] Sync item details',
 }
 export class SetItem implements Action {
-  readonly type = Actions.SetItem ;
+  readonly type = ActionType.Item ;
+  readonly action = ItemActions.SetItem ;
   constructor(public typeID: number) {}
 }
 export class SyncItem implements Action {
-  readonly type = Actions.SyncItem ;
+  readonly type = ActionType.Item ;
+  readonly action = ItemActions.SyncItem ;
   constructor(public item: Item) {}
 }
-export type ActionsItemUnion = SetItem | SyncItem;
-export type ActionsUnion = ActionsItemUnion;
+export type ActionsUnion = ItemActionsUnion;
+export type ActionTypesUnion = Item;
+
+export type ItemActionsUnion = SetItem | SyncItem;
