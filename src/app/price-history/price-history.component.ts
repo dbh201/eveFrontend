@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { RequestPriceHistory } from '../appdata.actions';
+import { PriceData } from '../pricedata';
+import { priceDataSelector } from '../appdata.selector';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-price-history',
@@ -6,10 +11,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./price-history.component.scss']
 })
 export class PriceHistoryComponent implements OnInit {
-
-  constructor() { }
+  data$: Observable<PriceData[]>;
+  constructor(private store: Store<any>) { }
 
   ngOnInit() {
+    this.data$ = this.store.select(priceDataSelector);
+    this.store.dispatch( new RequestPriceHistory() );
   }
 
 }
