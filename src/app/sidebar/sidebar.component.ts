@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { State } from '../appdata.state';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-sidebar',
@@ -6,10 +10,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-
-  constructor() { }
-
+  propBuffer: any;
+  constructor(private store: Store<State>) { }
+  state$: Observable<State>;
   ngOnInit() {
+    console.log('Sidebar loaded with defaults.');
+    this.state$ = this.store.select('state');
   }
-
 }

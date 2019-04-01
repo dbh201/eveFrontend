@@ -1,3 +1,13 @@
-<p>
-  sidebar works!
-</p>
+<table>
+  <th>Store Data</th>
+  <tr *ngFor='let prop of (state$ | async | keyvalue)'>
+    <div *ngIf='prop.key === "item"; else notItem'>
+      <tr *ngFor='let iprop of (prop.value | keyvalue)'>
+        {{iprop.key}}: {{iprop.value}}
+      </tr>
+    </div>
+    <ng-template #notItem>
+      {{prop.key}}: {{prop.value}} <br/>
+    </ng-template>
+  </tr>
+</table>
