@@ -13,5 +13,5 @@ export class SyncItem implements Action {
   readonly type = Actions.SyncItem ;
   constructor(public item: Item) {}
 }
-export type ActionsUnion = SetItem | SyncItem;
-
+export type ActionsItemUnion = SetItem | SyncItem;
+export type ActionsUnion = ActionsItemUnion;
