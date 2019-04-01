@@ -7,9 +7,11 @@ import { Observable } from 'rxjs';
 import { typeIDSelector } from './appdata.selector';
 import { map } from 'rxjs/operators';
 import * as a from './appdata.actions';
+import { PriceData } from './pricedata';
 
 const ICON_URL = 'http://localhost/Icons/items/';
 const STATIC_URL = 'http://localhost:5000/api/';
+const ESI_URL = 'https://esi.evetech.net/latest/';
 
 @Injectable({
   providedIn: 'root'
@@ -43,12 +45,26 @@ export class StaticDataService {
           return r;
         }));
   }
+  getPriceHistory(typeID: number, regionID: number): Observable<PriceData[]> {
+    return this.http.get(ESI_URL + 'markets/' + regionID + 'history/?type_id=' + typeID)
+      .pipe(
+        map( (i) => {
+          let a = new Array<PriceData>();
+          for (const j of Array<any>(i)) {
+            a.push( {
+              ...j, orderCount:  j.order_count
+            } as PriceData);
+          }
+          return a;
+        })
+      );
+  }
+
   getIconURL(iconID: number): Observable<string> {
     return this.http.get(STATIC_URL + 'icon/byid/' + iconID)
       .pipe(
         map( (i) => {
           const file = i[0][0].split('/').pop();
-          console.log(i + ' mapped to ' + ICON_URL + file);
           return (ICON_URL + file);
         }));
   }
