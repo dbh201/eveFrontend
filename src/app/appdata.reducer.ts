@@ -4,6 +4,7 @@ import { CargoType } from './cargotype';
 import { Item } from './item';
 import { State } from './appdata.state';
 import { itemReducer } from './item.reducer';
+import { marketReducer } from './market.reducer';
 
 
 export const initialState: State = {
@@ -25,7 +26,11 @@ export function rootReducer(
     case a.ActionType.Item: {
       return itemReducer(state, action);
     }
+    case a.ActionType.Market: {
+      return marketReducer(state, action);
+    }
     default: {
+      console.log('[WARNING] No reducer for action:\n' + action);
       return state;
     }
   }
