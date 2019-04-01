@@ -2,17 +2,9 @@ import * as a from './appdata.actions';
 import { Observable, Subject } from 'rxjs';
 import { CargoType } from './cargotype';
 import { Item } from './item';
+import { State } from './appdata.state';
+import { itemReducer } from './item.reducer';
 
-export interface State {
-  typeID: number;
-  item: Item;
-  baseSolarSystem: number;
-  allowedRegions: number[];
-  cargoType: CargoType;
-  capacity: number;
-  maxJumps: number;
-  lowSec: boolean;
-}
 
 export const initialState: State = {
   typeID: 0,
@@ -29,17 +21,9 @@ export function rootReducer(
   state = initialState,
   action: a.ActionsUnion
 ): State {
-  console.log(action.type);
   switch (action.type) {
-    case a.Actions.SetItem: {
-      console.log('Dispatched new typeID: ' + action.typeID);
-      console.log(JSON.stringify({ ...state, item: action.item}));
-      return {...state, typeID: action.typeID };
-    }
-    case a.Actions.SyncItem: {
-      console.log('Dispatched new Item: ' + action.item.typeName);
-      console.log(JSON.stringify({ ...state, item: action.item}));
-      return { ...state, item: action.item };
+    case a.ActionType.Item: {
+      return itemReducer(state, action);
     }
     default: {
       return state;
