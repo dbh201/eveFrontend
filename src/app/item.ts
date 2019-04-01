@@ -12,6 +12,7 @@ export class Item {
   published: number;
   marketGroupID: number;
   iconID: number;
+  iconURL: string;
   soundID: number;
   graphicID: number;
 }
