@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Item } from '../item';
-import { StaticDataService } from '../static-data.service';
+import { Store, select } from '@ngrx/store';
+import { State } from '../appdata.state';
+import { SetItem } from '../appdata.actions';
+import { itemSelector } from '../appdata.selector';
 
 @Component({
   selector: 'app-item-details',
@@ -9,17 +13,14 @@ import { StaticDataService } from '../static-data.service';
 })
 export class ItemDetailsComponent implements OnInit {
   // TODO: 3d graphics ?
-  item: Item ;
-  icon = '' ;
-  itemID: number ;
-  constructor(private sds: StaticDataService) { }
+  itemID: number;
+  item$: Observable<Item>;
+  constructor(private store: Store<State>) { }
 
   ngOnInit() {
+    this.item$ = this.store.select(itemSelector);
   }
   update() {
-    this.sds.getItemDetails(this.itemID).subscribe(i => {
-      this.item = i;
-      this.sds.getIconURL(this.item.iconID).subscribe(j => {this.icon = j; console.log(this.icon + ' loaded.'); });
-    });
+    this.store.dispatch(new SetItem(this.itemID));
   }
 }
