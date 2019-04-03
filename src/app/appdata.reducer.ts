@@ -30,7 +30,8 @@ export function rootReducer(
       return marketReducer(state, action);
     }
     default: {
-      console.log('[WARNING] No reducer for action:\n' + action);
+      console.log('[WARNING] rootReducer(): No action for type:\n' + JSON.stringify(action) );
+      console.log('( this can likely be ignored )');
       return state;
     }
   }
