@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 import { Item } from './item';
 
-export enum ActionType {
+export enum ActionCategories {
   Item    = '[Global] Item Action',
   Market  = '[Global] Market Data Action',
 }
@@ -15,36 +15,43 @@ export enum MarketActions {
 export enum ItemActions {
   SetItem   = '[Item] Set globally selected item',
   SyncItem  = '[Item] Sync item details in global ngrx store',
+  RequestItemDetails = '[Item] Request item details from external API',
 }
+export class RequestItemDetails implements Action {
+  readonly category = ActionCategories.Item ;
+  readonly type = ItemActions.RequestItemDetails ;
+  constructor(public typeID: number) {}
+}
+
 export class SetItem implements Action {
-  readonly type = ActionType.Item ;
-  readonly action = ItemActions.SetItem ;
+  readonly category = ActionCategories.Item ;
+  readonly type = ItemActions.SetItem ;
   constructor(public typeID: number) {}
 }
 export class SyncItem implements Action {
-  readonly type = ActionType.Item ;
-  readonly action = ItemActions.SyncItem ;
+  readonly category = ActionCategories.Item ;
+  readonly type = ItemActions.SyncItem ;
   constructor(public item: Item) {}
 }
 
 
 export class RequestPriceHistory implements Action {
-  readonly type = ActionType.Market ;
-  readonly action = MarketActions.RequestPriceHistory ;
+  readonly category = ActionCategories.Market ;
+  readonly type = MarketActions.RequestPriceHistory ;
 }
 export class AddMarketRegion implements Action {
-  readonly type = ActionType.Market ;
-  readonly action = MarketActions.AddMarketRegion ;
+  readonly category = ActionCategories.Market ;
+  readonly type = MarketActions.AddMarketRegion ;
   constructor(public regionID: number) {}
 }
 export class RemoveMarketRegion implements Action {
-  readonly type = ActionType.Market ;
-  readonly action = MarketActions.RemoveMarketRegion ;
+  readonly category = ActionCategories.Market ;
+  readonly type = MarketActions.RemoveMarketRegion ;
   constructor(public regionID: number) {}
 }
 export class ClearMarketRegions implements Action {
-  readonly type = ActionType.Market ;
-  readonly action = MarketActions.ClearMarketRegions ;
+  readonly category = ActionCategories.Market ;
+  readonly type = MarketActions.ClearMarketRegions ;
 }
 
 

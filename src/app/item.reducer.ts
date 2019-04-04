@@ -6,7 +6,7 @@ export function itemReducer(
   action: a.ItemActionsUnion
 ): State {
   console.log(JSON.stringify(state));
-  switch (action.action) {
+  switch (action.type) {
     case a.ItemActions.SetItem: {
       return {...state, typeID: action.typeID };
     }

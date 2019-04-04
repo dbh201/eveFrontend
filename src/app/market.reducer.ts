@@ -6,7 +6,7 @@ export function marketReducer(
   action: a.MarketActionsUnion
 ): State {
   console.log(JSON.stringify(state));
-  switch (action.action) {
+  switch (action.type) {
     case a.MarketActions.RequestPriceHistory: {
       return state;
     }

@@ -15,18 +15,19 @@ export const initialState: State = {
   cargoType: CargoType.Any,
   capacity: 0,
   maxJumps: 0,
-  lowSec: false
+  lowSec: false,
+  priceData: null
 };
 
 export function rootReducer(
   state = initialState,
   action: a.ActionsUnion
 ): State {
-  switch (action.type) {
-    case a.ActionType.Item: {
+  switch (action.category) {
+    case a.ActionCategories.Item: {
       return itemReducer(state, action);
     }
-    case a.ActionType.Market: {
+    case a.ActionCategories.Market: {
       return marketReducer(state, action);
     }
     default: {
