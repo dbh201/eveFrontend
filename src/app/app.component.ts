@@ -13,21 +13,6 @@ import { Subscription } from 'rxjs';
 })
 export class AppComponent {
   title = 'eveFrontend';
-  typeID$: Subscription;
-  constructor(private sds: StaticDataService, private store: Store<State>) {}
-  ngOnInit() {
-    console.log('App loading background service...');
-    this.typeID$ = this.store.select(typeIDSelector).subscribe( {
-      next: (tid) => {
-        if ( tid > 0 ) {
-          this.sds.getItemDetails(tid).subscribe( j => {
-
-            this.sds.getIconURL(j.iconID).subscribe( k => {
-              j.iconURL = k;
-              this.store.dispatch( new a.SyncItem(j) );
-            });
-          });
-        }
-      }});
-  }
+  constructor() {}
+  ngOnInit() {}
 }
