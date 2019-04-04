@@ -16,11 +16,19 @@ export enum ItemActions {
   SetItem   = '[Item] Set globally selected item',
   SyncItem  = '[Item] Sync item details in global ngrx store',
   RequestItemDetails = '[Item] Request item details from external API',
+  RequestIconURLForItem = '[Item] Request icon URL for an item from external API',
 }
+
 export class RequestItemDetails implements Action {
   readonly category = ActionCategories.Item ;
   readonly type = ItemActions.RequestItemDetails ;
   constructor(public typeID: number) {}
+}
+
+export class RequestIconURLForItem implements Action {
+  readonly category = ActionCategories.Item ;
+  readonly type = ItemActions.RequestIconURLForItem ;
+  constructor(public item: Item) {}
 }
 
 export class SetItem implements Action {
