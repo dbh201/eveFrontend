@@ -1,9 +1,11 @@
 import { Item } from './item';
+import { PriceData } from './pricedata';
 import { CargoType } from './cargotype';
 
 export interface State {
   typeID: number;
-  item: Item;
+  itemDetails: Item;
+  priceData: PriceData[];
   baseSolarSystem: number;
   allowedRegions: number[];
   cargoType: CargoType;

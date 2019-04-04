@@ -9,7 +9,7 @@ import { marketReducer } from './market.reducer';
 
 export const initialState: State = {
   typeID: 0,
-  item: null,
+  itemDetails: null,
   baseSolarSystem: 30005312,
   allowedRegions: [10000068],
   cargoType: CargoType.Any,
