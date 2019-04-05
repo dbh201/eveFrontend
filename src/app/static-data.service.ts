@@ -18,6 +18,7 @@ const ESI_URL = 'https://esi.evetech.net/latest/';
 })
 
 export class StaticDataService {
+
   constructor(private http: HttpClient) {}
 
   getItemDetails(itemID: number): Observable<Item> {
@@ -45,21 +46,6 @@ export class StaticDataService {
           return r;
         }));
   }
-  getPriceHistory(typeID: number, regionID: number): Observable<PriceData[]> {
-    return this.http.get(ESI_URL + 'markets/' + regionID + 'history/?type_id=' + typeID)
-      .pipe(
-        map( (i) => {
-          let a = new Array<PriceData>();
-          for (const j of Array<any>(i)) {
-            a.push( {
-              ...j, orderCount:  j.order_count
-            } as PriceData);
-          }
-          return a;
-        })
-      );
-  }
-
   getIconURL(iconID: number): Observable<string> {
     return this.http.get(STATIC_URL + 'icon/byid/' + iconID)
       .pipe(
@@ -67,5 +53,13 @@ export class StaticDataService {
           const file = i[0][0].split('/').pop();
           return (ICON_URL + file);
         }));
+  }
+  populateIconURLProperty(item: Item): Observable<Item> {
+    return this.getIconURL(item.iconID).pipe(
+      map(
+      (s: string) => {
+        return { ...item, iconURL: s } as Item;
+      })
+    );
   }
 }
