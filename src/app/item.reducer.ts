@@ -11,10 +11,11 @@ export function itemReducer(
       return {...state, typeID: action.typeID };
     }
     case a.ItemActions.SyncItem: {
-      return { ...state, item: action.item };
+      return { ...state, itemDetails: action.item };
     }
     default: {
       console.log('[WARNING] itemReducer(): No action for type:\n' + JSON.stringify(action));
+      return state;
     }
   }
 }

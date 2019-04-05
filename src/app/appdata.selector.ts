@@ -6,9 +6,9 @@ export function typeIDSelector(state: any): number {
   state = state.state as State;
   return state.typeID;
 }
-export function itemSelector(state: any): Item {
+export function itemDetailsSelector(state: any): Item {
   state = state.state as State;
-  return state.item;
+  return state.itemDetails;
 }
 export function priceDataSelector(state: any): PriceData[] {
   state = state.state as State;
