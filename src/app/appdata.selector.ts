@@ -1,16 +1,26 @@
 import { State } from './appdata.state';
 import { Observable } from 'rxjs';
 import { Item } from './item';
-import { PriceData } from './pricedata';
+import { PriceHistory } from './price-history';
+
+
+
 export function typeIDSelector(state: any): number {
   state = state.state as State;
   return state.typeID;
 }
+
 export function itemDetailsSelector(state: any): Item {
   state = state.state as State;
   return state.itemDetails;
 }
-export function priceDataSelector(state: any): PriceData[] {
+
+export function priceHistorySelector(state: any): PriceHistory {
   state = state.state as State;
-  return state.priceData;
+  return state.priceHistory;
+}
+
+export function regionListSelector(state: any): number[] {
+  state = state.state as State;
+  return state.regionList;
 }
