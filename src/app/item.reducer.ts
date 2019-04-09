@@ -5,7 +5,6 @@ export function itemReducer(
   state: State,
   action: a.ItemActionsUnion
 ): State {
-  console.log(JSON.stringify(state));
   switch (action.type) {
     case a.ItemActions.SetItem: {
       return {...state, typeID: action.typeID };
@@ -14,7 +13,7 @@ export function itemReducer(
       return { ...state, itemDetails: action.item };
     }
     default: {
-      console.log('[WARNING] itemReducer(): No action for type:\n' + JSON.stringify(action));
+      // console.log('[WARNING] itemReducer(): No action for type:\n' + JSON.stringify(action));
       return state;
     }
   }
