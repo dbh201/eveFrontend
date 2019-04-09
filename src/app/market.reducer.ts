@@ -1,17 +1,21 @@
 import * as a from './appdata.actions';
 import { State } from './appdata.state';
+import { PriceHistory, PriceHistoryEntry } from './price-history';
 
 export function marketReducer(
   state: State,
   action: a.MarketActionsUnion
 ): State {
-  console.log(JSON.stringify(state));
   switch (action.type) {
-    case a.MarketActions.RequestPriceHistory: {
-      return state;
+    case a.MarketActions.AddPriceHistoryForRegion: {
+      const b = { ...state };
+      b.priceHistory = new PriceHistory();
+      b.priceHistory.data[action.regionID] = action.priceHistory;
+      console.log('MARKET: new state:\n' + JSON.stringify(b));
+      return b;
     }
     default: {
-      console.log('[WARNING] marketReducer(): No action for type:\n' + JSON.stringify(action));
+      // console.log('[WARNING] marketReducer(): No action for type:\n' + JSON.stringify(action));
       return state;
     }
   }
