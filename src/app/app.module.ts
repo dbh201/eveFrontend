@@ -6,6 +6,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
+import { ChartsModule } from 'ng2-charts';
+
 import { AppRoutingModule } from './app-routing.module';
 
 import { rootReducer } from './appdata.reducer';
@@ -22,6 +24,7 @@ import { BuySellDepthComponent } from './buy-sell-depth/buy-sell-depth.component
 import { PriceHistoryComponent } from './price-history/price-history.component';
 
 import { StaticDataEffects } from './static-data.effects';
+import { ESIEffects } from './esi.effects';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,8 @@ import { StaticDataEffects } from './static-data.effects';
     FormsModule,
     HttpClientModule,
     StoreModule.forRoot({ state: rootReducer }),
-    EffectsModule.forRoot([StaticDataEffects])
+    EffectsModule.forRoot([StaticDataEffects, ESIEffects]),
+    ChartsModule
   ],
   providers: [ ],
   bootstrap: [ AppComponent ]
