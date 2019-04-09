@@ -1,13 +1,9 @@
 <table>
+  <input [(ngModel)]="typeID" type="number" placeholder="typeID" style="width: 75px;" />
+  <input (click)="setItem()" type="button" placeholder="setItem" value="Set selected item" />
+  <br/><br/><br/><br/><br/>
   <th>Store Data</th>
   <tr *ngFor='let prop of (state$ | async | keyvalue)'>
-    <div *ngIf='prop.key === "item"; else notItem'>
-      <tr *ngFor='let iprop of (prop.value | keyvalue)'>
-        {{iprop.key}}: {{iprop.value}}
-      </tr>
-    </div>
-    <ng-template #notItem>
-      {{prop.key}}: {{prop.value}} <br/>
-    </ng-template>
+      {{prop.key}}: {{prop.value}}
   </tr>
 </table>
