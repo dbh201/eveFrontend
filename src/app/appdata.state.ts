@@ -1,13 +1,13 @@
 import { Item } from './item';
-import { PriceData } from './pricedata';
+import { PriceHistory } from './price-history';
 import { CargoType } from './cargotype';
 
 export interface State {
   typeID: number;
   itemDetails: Item;
-  priceData: PriceData[];
+  priceHistory: PriceHistory;
   baseSolarSystem: number;
-  allowedRegions: number[];
+  regionList: number[];
   cargoType: CargoType;
   capacity: number;
   maxJumps: number;
