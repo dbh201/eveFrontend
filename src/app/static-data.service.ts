@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 import { typeIDSelector } from './appdata.selector';
 import { map } from 'rxjs/operators';
 import * as a from './appdata.actions';
-import { PriceData } from './pricedata';
+import { PriceHistory } from './price-history';
 
 const ICON_URL = 'http://localhost/Icons/items/';
 const STATIC_URL = 'http://localhost:5000/api/';
