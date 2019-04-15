@@ -17,6 +17,7 @@ export class PriceHistoryEntry {
 // }
 
 export class PriceHistory {
+  typeID: number;
   data: { [key: number]: PriceHistoryEntry[] };
   constructor() { this.data = {}; }
 }
