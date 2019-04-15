@@ -76,6 +76,36 @@ Multiple reducers will be used. If multiple stores are not used, the sub-reducer
  - [ ] Have a debug and production version: one with the debug code, one without. 
  - [ ] Commented code is important. Comment the code in the debug version only.
 
+# Important notes
+## chart.js
+- Resizing is completely ridiculous and convoluted. Here's how it works:
+
+# If the chart option "responsive" is set to false:
+The chart size is the width and height properties of the canvas.
+## If width and/or height are not set:
+Defaults are width=300 and height=150.
+
+#If the chart option "responsive" is set to true:
+## If maintainAspectRatio is not set:
+Default is maintainAspectRatio = true.
+## If maintainAspectRatio is set to false:
+The chart size is set to the size of the containing div.
+## If maintainAspectRatio is set to true:
+The width of the chart is the width of the containing div.
+The height of the chart is the width of the containing div, divided by the aspectRatio.
+aspectRatio is set to the canvas width divided by the canvas height.
+## If width and height are not set:
+aspectRatio is set in the options.
+## If aspectRatio is not set:
+Default is aspectRatio = 2.
+**TO BE CLEAR: aspectRatio is set first by width/height properties of the canvas. This
+cannot be overridden by the aspectRatio chart option. The canvas properties must be 
+removed in order to use the aspectRatio chart option.**
+Also, resizing follows the size of the containing div.
+
+**BUG: when resizing window, root div does not properly resize grid element width.**
+**help**
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
