@@ -10,7 +10,7 @@ import { ChartsModule } from 'ng2-charts';
 
 import { AppRoutingModule } from './app-routing.module';
 
-import { rootReducer } from './appdata.reducer';
+import { rootReducer } from './root.reducer';
 
 
 import { AppComponent } from './app.component';

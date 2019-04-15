@@ -4,14 +4,14 @@ import { Store } from '@ngrx/store';
 import { Observable, from } from 'rxjs';
 import { switchMap, toArray, map, tap, withLatestFrom } from 'rxjs/operators';
 
-import { State } from './appdata.state';
+import { State } from './root.state';
 import { ESIService } from './esi.service';
 import { MarketActions,
   AddPriceHistoryForRegion,
   RequestPriceHistory,
-  RequestPriceHistoryForRegion } from './appdata.actions';
+  RequestPriceHistoryForRegion } from './root.actions';
 import { PriceHistory, PriceHistoryEntry } from './price-history';
-import { regionListSelector } from './appdata.selector';
+import { regionListSelector } from './root.selector';
 
 @Injectable()
 

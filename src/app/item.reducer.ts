@@ -1,5 +1,5 @@
-import * as a from './appdata.actions';
-import { State } from './appdata.state';
+import * as a from './root.actions';
+import { State } from './root.state';
 
 export function itemReducer(
   state: State,

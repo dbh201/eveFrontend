@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Item } from '../item';
 import { Store, select } from '@ngrx/store';
-import { State } from '../appdata.state';
-import { RequestItemDetails } from '../appdata.actions';
-import { itemDetailsSelector } from '../appdata.selector';
+import { State } from '../root.state';
+import { RequestItemDetails } from '../root.actions';
+import { itemDetailsSelector } from '../root.selector';
 
 @Component({
   selector: 'app-item-details',

@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { StaticDataService } from './static-data.service';
 import { Store, select } from '@ngrx/store';
-import { State } from './appdata.state';
-import { typeIDSelector } from './appdata.selector';
-import * as a from './appdata.actions';
+import { State } from './root.state';
+import { typeIDSelector } from './root.selector';
+import * as a from './root.actions';
 import { Subscription } from 'rxjs';
 
 @Component({

@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Store, select } from '@ngrx/store';
-import { State } from './appdata.state';
+import { State } from './root.state';
 import { Item } from './item';
 import { Observable } from 'rxjs';
-import { typeIDSelector } from './appdata.selector';
+import { typeIDSelector } from './root.selector';
 import { map } from 'rxjs/operators';
-import * as a from './appdata.actions';
+import * as a from './root.actions';
 import { PriceHistory } from './price-history';
 
 const ICON_URL = 'http://localhost/Icons/items/';

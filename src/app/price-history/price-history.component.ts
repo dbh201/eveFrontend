@@ -1,7 +1,7 @@
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import { RequestPriceHistory } from '../appdata.actions';
-import { priceHistorySelector, typeIDSelector } from '../appdata.selector';
+import { RequestPriceHistory } from '../root.actions';
+import { priceHistorySelector, typeIDSelector } from '../root.selector';
 import { PriceHistory } from '../price-history';
 import { Store } from '@ngrx/store';
 

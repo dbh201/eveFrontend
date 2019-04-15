@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { State } from '../appdata.state';
-import { SetItem } from '../appdata.actions';
+import { State } from '../root.state';
+import { SetItem } from '../root.actions';
 import { Observable } from 'rxjs';
 
 

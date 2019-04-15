@@ -1,4 +1,4 @@
-import { State } from './appdata.state';
+import { State } from './root.state';
 import { Observable } from 'rxjs';
 import { Item } from './item';
 import { PriceHistory } from './price-history';

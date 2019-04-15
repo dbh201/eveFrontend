@@ -3,7 +3,7 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Observable } from 'rxjs';
 import { switchMap, withLatestFrom, map, tap } from 'rxjs/operators';
 import { StaticDataService } from './static-data.service';
-import { ItemActions, RequestItemDetails, RequestIconURLForItem, SyncItem } from './appdata.actions';
+import { ItemActions, RequestItemDetails, RequestIconURLForItem, SyncItem } from './root.actions';
 import { Item } from './item';
 
 @Injectable()
