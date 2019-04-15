@@ -39,9 +39,9 @@ export class ESIEffects {
     ofType( MarketActions.RequestPriceHistoryForRegion ),
     switchMap( (a: RequestPriceHistoryForRegion) =>
       this.esi.getPriceHistoryForRegion(a.typeID, a.regionID).pipe(
-        map( b => [b, a.regionID] ),
+        map( b => [a.typeID, b, a.regionID] ),
       )
     ),
-    map( a => new AddPriceHistoryForRegion(a[0] as PriceHistoryEntry[], a[1] as number ) )
+    map( a => new AddPriceHistoryForRegion(a[0] as number, a[1] as PriceHistoryEntry[], a[2] as number ) )
   );
 }
