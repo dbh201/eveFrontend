@@ -68,7 +68,7 @@ export class RequestPriceHistoryForRegion implements Action {
 export class AddPriceHistoryForRegion implements Action {
   readonly category = ActionCategories.Market ;
   readonly type = MarketActions.AddPriceHistoryForRegion ;
-  constructor(public priceHistory: PriceHistoryEntry[], public regionID: number) {}
+  constructor(public typeID: number, public priceHistory: PriceHistoryEntry[], public regionID: number) {}
 }
 
 export class AddMarketRegion implements Action {
