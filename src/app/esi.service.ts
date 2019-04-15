@@ -4,7 +4,7 @@ import { Observable, from, merge, empty } from 'rxjs';
 import { map, reduce, switchMap, tap, catchError } from 'rxjs/operators';
 import { PriceHistoryEntry } from './price-history';
 
-const ESI_URL = 'http://esi.local/latest/';
+const ESI_URL = 'https://esi.evetech.net/latest/';
 
 @Injectable({
   providedIn: 'root'
