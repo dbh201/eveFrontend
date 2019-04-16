@@ -50,7 +50,10 @@ export class PriceHistoryComponent implements OnInit {
   ngOnInit() {
     this.dataSub = this.store.select(priceHistorySelector).subscribe( d => {
       console.log('PRICE-HISTORY: New data for the chart: ' + JSON.stringify(d));
-      this.chartUpdate(d);
+      if ( Object.keys(d.data).length > 0 ) {
+        this.clearChart();
+        this.chartUpdate(d);
+      }
     });
     this.typeIDSub = this.store.select(typeIDSelector).subscribe(
       t => {
@@ -61,14 +64,16 @@ export class PriceHistoryComponent implements OnInit {
       }
       );
   }
+  clearChart() {
+    this.chartData = [];
+    this.chartLabels = [];
+  }
   chartUpdate(priceHistory: PriceHistory) {
-    if (this.chartData === undefined) {
-      this.chartData = new Array<ChartDataSets>();
-    }
     Object.entries(priceHistory.data).map( entry => {
       const temp = { data: [] as number[], label: entry[0] } as ChartDataSets;
       for (const priceDataEntry of entry[1]) {
         (temp.data as number[]).push(priceDataEntry.average);
+        this.chartLabels.push(priceDataEntry.date);
       }
       this.chartData.push(temp);
     });
