@@ -1,7 +1,7 @@
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import { RequestPriceHistory } from '../root.actions';
-import { priceHistorySelector, typeIDSelector } from '../root.selector';
+import { RequestPriceHistory, RequestPriceHistoryForRegion } from '../root.actions';
+import { priceHistorySelector, typeIDSelector, regionListSelector } from '../root.selector';
 import { PriceHistory } from '../price-history';
 import { Store } from '@ngrx/store';
 
@@ -16,7 +16,8 @@ import { Label } from 'ng2-charts';
 export class PriceHistoryComponent implements OnInit {
   dataSub: Subscription;
   typeIDSub: Subscription;
-
+  regionListSub: Subscription;
+  typeID: number;
   // Important note: ChartOptions implementation is located at node_modules/@types/chart.js/index.d.ts
   // Good luck finding any reasonable documentation.
   // TODO: test options
@@ -51,7 +52,6 @@ export class PriceHistoryComponent implements OnInit {
     this.dataSub = this.store.select(priceHistorySelector).subscribe( d => {
       console.log('PRICE-HISTORY: New data for the chart: ' + JSON.stringify(d));
       if ( Object.keys(d.data).length > 0 ) {
-        this.clearChart();
         this.chartUpdate(d);
       }
     });
@@ -59,10 +59,27 @@ export class PriceHistoryComponent implements OnInit {
       t => {
         console.log('PRICE-HISTORY: received new typeID ' + t);
         if (t > 0) {
+          this.typeID = t;
+          this.clearChart();
           this.store.dispatch( new RequestPriceHistory(t) );
         }
       }
       );
+    this.regionListSub = this.store.select(regionListSelector).subscribe( d => {
+      for ( const n of d )  {
+        const i = String(n);
+        let needPriceHistory = true;
+        for ( const j of this.chartData ) {
+          if ( i === j.label ) {
+            needPriceHistory = false;
+            break;
+          }
+        }
+        if ( needPriceHistory ) {
+          this.store.dispatch( new RequestPriceHistoryForRegion( this.typeID, n ) );
+        }
+      }
+    });
   }
   clearChart() {
     this.chartData = [];
@@ -81,5 +98,6 @@ export class PriceHistoryComponent implements OnInit {
   ngOnDestroy() {
     this.typeIDSub.unsubscribe();
     this.dataSub.unsubscribe();
+    this.regionListSub.unsubscribe();
   }
 }
