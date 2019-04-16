@@ -1,7 +1,16 @@
 <table>
-  <input [(ngModel)]="typeID" type="number" placeholder="typeID" style="width: 75px;" />
-  <input (click)="setItem()" type="button" placeholder="setItem" value="Set selected item" />
-  <br/><br/><br/><br/><br/>
+  <tr>
+    <div>
+  <input [(ngModel)]="typeID" type="number" placeholder="typeID" style="width: 70px;"  />
+  <input (click)="setItem()" type="button" placeholder="setItem" value="✔️" style="height: 22px;" />
+    </div>
+  </tr>
+  <tr>
+    <input [(ngModel)]="regionID" type="number" placeholder="regionID" style="width: 107px;"/>
+    <input (click)="addRegion()" type="button" placeholder="addRegion" value="+" />
+    <input (click)="rmRegion()" type="button" placeholder="rmRegion" value="-" />
+  </tr>
+
   <th>Store Data</th>
   <tr *ngFor='let prop of (state$ | async | keyvalue)'>
       {{prop.key}}: {{prop.value}}
