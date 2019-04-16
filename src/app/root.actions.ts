@@ -13,9 +13,13 @@ export enum MarketActions {
   RequestPriceHistory           = '[Market] Request price history for globally selected item',
   RequestPriceHistoryForRegion  = '[Market] Request price history for globally selected item in a specific region',
   AddPriceHistoryForRegion      = '[Market] Add price history for region to ngrx store',
+
+  RequestAddMarketRegion        = '[Market] Request the addition of a region to the region list',
   AddMarketRegion               = '[Market] Add region to relevant market regions list',
-  RemoveMarketRegion            = '[Market] Remove region from relevant market regions list',
-  ClearMarketRegions            = '[Market] Remove all regions from relevant market regions list',
+  RequestRemoveMarketRegion     = '[Market] Request the removal of a region from the region list',
+  RemoveMarketRegion            = '[Market] Remove region from the region list',
+  ClearMarketRegions            = '[Market] Remove all regions from the region list',
+  RegionListChanged             = '[Market] Region list has been changed! All relevant components should update now.',
 }
 
 export enum ItemActions {
@@ -71,12 +75,22 @@ export class AddPriceHistoryForRegion implements Action {
   constructor(public typeID: number, public priceHistory: PriceHistoryEntry[], public regionID: number) {}
 }
 
+export class RequestAddMarketRegion implements Action {
+  readonly category = ActionCategories.Market ;
+  readonly type = MarketActions.RequestAddMarketRegion ;
+  constructor(public regionID: number) {}
+}
 export class AddMarketRegion implements Action {
   readonly category = ActionCategories.Market ;
   readonly type = MarketActions.AddMarketRegion ;
   constructor(public regionID: number) {}
 }
 
+export class RequestRemoveMarketRegion implements Action {
+  readonly category = ActionCategories.Market ;
+  readonly type = MarketActions.RequestRemoveMarketRegion ;
+  constructor(public regionID: number) {}
+}
 export class RemoveMarketRegion implements Action {
   readonly category = ActionCategories.Market ;
   readonly type = MarketActions.RemoveMarketRegion ;
@@ -87,6 +101,10 @@ export class ClearMarketRegions implements Action {
   readonly category = ActionCategories.Market ;
   readonly type = MarketActions.ClearMarketRegions ;
 }
+export class RegionListChanged implements Action {
+  readonly category = ActionCategories.Market ;
+  readonly type = MarketActions.RegionListChanged ;
+}
 
 
 
@@ -96,4 +114,5 @@ export type ItemActionsUnion = SetItem | SyncItem;
 
 export type MarketActionsUnion = RequestPriceHistory | RequestPriceHistoryForRegion |
   AddPriceHistoryForRegion |
+  RequestAddMarketRegion | RequestRemoveMarketRegion |
   AddMarketRegion | RemoveMarketRegion | ClearMarketRegions;
