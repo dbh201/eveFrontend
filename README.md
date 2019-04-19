@@ -245,6 +245,27 @@ Service: dispatch an ErrorAction. **WARNING: could have multiple error messages 
 (ErrorAction): Directly log error using errorReducer
 (StoreAction): Directly log error using errorReducer
 
+# MODULES
+
+## ESI
+This module interfaces with the remote API. It should have the following:
+
+### General requirements
+ - It should be contained within its own ngModule. (More research required on ngModules)
+ - It should have an Effects module named <esi.effects.ts>
+ - It should have a service module name <esi.service.ts>
+ - Research .spec.ts files. (What is this for? is it necessary? can we use it?)
+ - ESI should respond to RequestActions for dynamic market data.
+ - ESI should dispatch StoreActions to add dynamic market data to the store.
+ - ESI should be able to cache all requests.
+
+### Specific requirements
+ - [ ] Request all items in a region (all pages, if necessary)
+ - [ ] Request price history for specific item (all pages, region by region)
+ - [ ] Request market orders for a specific item (all pages, region by region)
+ - [ ] Request market orders for a specific location (more granular than region) (all pages, item by item)
+ - [ ] Request market orders for a specific item in a specific region
+
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
